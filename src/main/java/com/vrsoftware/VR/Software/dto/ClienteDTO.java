@@ -5,6 +5,7 @@ import com.vrsoftware.VR.Software.entities.Cliente;
 public class ClienteDTO {
 
     public Long id;
+    public String codigo;
     public String nome;
     public Double limiteCompra;
     public Integer fechamentoFatura;
@@ -13,8 +14,9 @@ public class ClienteDTO {
 
     }
 
-    public ClienteDTO(Long id, String nome, Double limiteCompra, Integer fechamentoFatura) {
+    public ClienteDTO(Long id, String codigo, String nome, Double limiteCompra, Integer fechamentoFatura) {
         this.id = id;
+        this.codigo = codigo;
         this.nome = nome;
         this.limiteCompra = limiteCompra;
         this.fechamentoFatura = fechamentoFatura;
@@ -33,6 +35,14 @@ public class ClienteDTO {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
     }
 
     public String getNome() {

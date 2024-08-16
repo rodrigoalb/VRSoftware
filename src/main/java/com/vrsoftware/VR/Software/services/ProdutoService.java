@@ -36,6 +36,7 @@ public class ProdutoService {
     @Transactional(readOnly = false)
     public ProdutoDTO insert(ProdutoDTO dto) {
         Produto produto = new Produto();
+        produto.setCodigo(dto.getCodigo());
         produto.setDescricao(dto.getDescricao());
         produto.setPreco(dto.getPreco());
 
@@ -48,6 +49,7 @@ public class ProdutoService {
         try{
 
             Produto produto = produtoRepository.getReferenceById(id);
+            produto.setCodigo(dto.getCodigo());
             produto.setDescricao(dto.getDescricao());
             produto.setPreco(dto.getPreco());
 

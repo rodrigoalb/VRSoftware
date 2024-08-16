@@ -32,11 +32,11 @@ public class ClienteController {
     }
 
     @PostMapping
-    public ResponseEntity<Cliente> insert(@Valid @RequestBody Cliente cli){
-        cli = service.insert(cli);
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(cli.getId()).toUri();
+    public ResponseEntity<ClienteDTO> insert(@Valid @RequestBody ClienteDTO dto){
+        dto = service.insert(dto);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(dto.getId()).toUri();
 
-        return ResponseEntity.created(uri).body(cli);
+        return ResponseEntity.created(uri).body(dto);
     }
 
     @PutMapping(value = "/{id}")

@@ -9,6 +9,7 @@ public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long id;
+    public String codigo;
     public String nome;
     public Double limiteCompra;
     public Integer fechamentoFatura;
@@ -17,15 +18,15 @@ public class Cliente {
 
     }
 
-    public Cliente(Long id, String nome, Double limiteCompra, Integer fechamentoFatura) {
+    public Cliente(Long id, String codigo, String nome, Double limiteCompra, Integer fechamentoFatura) {
+        validateFechamento(id, codigo, nome, limiteCompra, fechamentoFatura);
         this.id = id;
+        this.codigo = codigo;
         this.nome = nome;
         this.limiteCompra = limiteCompra;
         this.fechamentoFatura = fechamentoFatura;
     }
 
-    public Cliente(Cliente cliente) {
-    }
 
     public Long getId() {
         return id;
@@ -33,6 +34,14 @@ public class Cliente {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
     }
 
     public String getNome() {
@@ -57,5 +66,11 @@ public class Cliente {
 
     public void setFechamentoFatura(Integer fechamentoFatura) {
         this.fechamentoFatura = fechamentoFatura;
+    }
+
+    public void validateFechamento(Long id, String codigo, String nome, Double limiteCompra, Integer fechamentoFatura){
+        if (fechamentoFatura < 1 || fechamentoFatura > 31) {
+            throw new IllegalArgumentException("Dia de fechamento da fatura deve estar entre 1 e 31");
+        }
     }
 }

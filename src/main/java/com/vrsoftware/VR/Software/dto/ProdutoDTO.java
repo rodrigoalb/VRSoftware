@@ -5,6 +5,7 @@ import com.vrsoftware.VR.Software.entities.Produto;
 public class ProdutoDTO {
 
     public Long id;
+    public String codigo;
     public String descricao;
     public Double preco;
 
@@ -12,8 +13,9 @@ public class ProdutoDTO {
 
     }
 
-    public ProdutoDTO(Long id, String descricao, Double preco) {
+    public ProdutoDTO(Long id, String codigo, String descricao, Double preco) {
         this.id = id;
+        this.codigo = codigo;
         this.descricao = descricao;
         this.preco = preco;
     }
@@ -30,6 +32,14 @@ public class ProdutoDTO {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
     }
 
     public String getDescricao() {

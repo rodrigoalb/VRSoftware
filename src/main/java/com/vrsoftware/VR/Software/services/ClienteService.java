@@ -6,7 +6,6 @@ import com.vrsoftware.VR.Software.repositories.ClienteRepository;
 import com.vrsoftware.VR.Software.services.Exceptions.ResourceNotFoundException;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -35,14 +34,15 @@ public class ClienteService {
     }
 
     @Transactional(readOnly = false)
-    public Cliente insert(Cliente cli) {
+    public ClienteDTO insert(ClienteDTO dto) {
         Cliente cliente = new Cliente();
-        cliente.setNome(cli.getNome());
-        cliente.setLimiteCompra(cli.getLimiteCompra());
-        cliente.setFechamentoFatura(cli.getFechamentoFatura());
+        cliente.setCodigo(dto.getCodigo());
+        cliente.setNome(dto.getNome());
+        cliente.setLimiteCompra(dto.getLimiteCompra());
+        cliente.setFechamentoFatura(dto.getFechamentoFatura());
 
         cliente = clienteRepository.save(cliente);
-        return new Cliente(cliente);
+        return new ClienteDTO(cliente);
     }
 
     @Transactional(readOnly = false)
@@ -50,6 +50,7 @@ public class ClienteService {
         try{
 
             Cliente cliente = clienteRepository.getReferenceById(id);
+            cliente.setCodigo(dto.getCodigo());
             cliente.setNome(dto.getNome());
             cliente.setLimiteCompra(dto.getLimiteCompra());
             cliente.setFechamentoFatura(dto.getFechamentoFatura());
